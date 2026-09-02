@@ -6,6 +6,37 @@
 <meta name="theme-color" content="#120a13">
 <title>For Khushi ❤️</title>
 <style>
+  .floating-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.heart {
+    position: absolute;
+    bottom: -30px;
+    font-size: 20px;
+    animation: floatHeart linear forwards;
+    opacity: 0.8;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) scale(0.8) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) scale(1.4) rotate(25deg);
+        opacity: 0;
+    }
+}
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:#100910;color:#fff7fb;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
@@ -115,6 +146,28 @@ musicBtn.addEventListener('click', async ()=>{
   else{audio.pause();musicBtn.textContent='♫ Music off'}
 });
 for(let i=0;i<22;i++){const s=document.createElement('div');s.className='spark';s.style.left=Math.random()*100+'vw';s.style.bottom=(-10-Math.random()*20)+'px';s.style.animationDelay=Math.random()*5+'s';s.style.animationDuration=(4+Math.random()*5)+'s';document.body.appendChild(s)}
+  const heartContainer = document.querySelector('.floating-hearts');
+
+function createHeart() {
+    const heart = document.createElement('div');
+
+    heart.className = 'heart';
+    heart.innerHTML = '❤️';
+
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (12 + Math.random() * 20) + 'px';
+    heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+
+    heartContainer.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+setInterval(createHeart, 700);
 </script>
+  <div class="floating-hearts"></div>
+  
 </body>
 </html>
